@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPortfolio.DAL.Entities;
 
+
 namespace MyPortfolio.DAL.Context
 {
     public class MyPoftfolioContext : DbContext
     {
+       
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-363RU31\\SQLEXPRESS;initial Catalog=MyPortfolioDb;integrated Security=true;");
@@ -21,5 +23,21 @@ namespace MyPortfolio.DAL.Context
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
 
-    }
+        public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(x => x.UserName)
+                .IsUnique();
+            modelBuilder.Entity<User>()
+                .HasIndex(x => x.Mail)
+                .IsUnique();      
+		}
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+	}
 }

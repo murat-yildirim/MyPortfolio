@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.DAL.Context;
 using MyPortfolio.DAL.Entities;
 
@@ -7,7 +8,7 @@ namespace MyPortfolio.Controllers
     public class AboutController : Controller
     {
         MyPoftfolioContext context = new MyPoftfolioContext();
-
+		
 		[HttpGet]
 		public IActionResult AboutUpdate()
         {

@@ -1,0 +1,56 @@
+﻿
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<form id="registerForm" action="/ContactMessage/ContactMessageSend" method="post">
+
+
+    <div class="form-field">
+        <input name="Name" type="text" placeholder="Ad-Soyad" value="" minlength="2" required="" aria-required="true" class="full-width">
+    </div>
+    <div class="form-field">
+        <input name="Mail" type="email" placeholder="Mail Adresi" value="" required="" aria-required="true" class="full-width">
+    </div>
+    <div class="form-field">
+        <input name="Subject" type="text" placeholder="Konu" value="" class="full-width">
+    </div>
+    <div class="form-field">
+        <textarea name="Message" placeholder="Mesaj" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
+    </div>
+   
+
+    <button class="full-width btn--primary">Gönder</button>
+    <div id="responseMessage" style="margin-top: 10px; color: green;"></div> <!-- Başarı veya hata mesajı için bir alan -->
+
+
+
+</form>
+<script>
+    $(document).ready(function () {
+        $('#registerForm').submit(function (event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '/ContactMessage/ContactMessageSend',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    console.log(response); // Yanıtı tarayıcı konsolunda inceleyin
+
+                    if (response.success) {
+                        $('#responseMessage').text('Mesajınız İletilmiştir En Kısa Sürede Dönüş Sağlanacaktır!').css('color', 'green'); // Başarı mesajı göster
+                        $('#registerForm')[0].reset(); // Formu sıfırla
+                    } else {
+                        $('#responseMessage').text(response.message || 'Bir hata oluştu.').css('color', 'red'); // Hata mesajı göster
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Hata durumunu tarayıcı konsolunda inceleyin
+                    console.log(xhr.responseText); // Sunucudan dönen hata yanıtını görüntüle
+                    $('#responseMessage').text('Bir hata oluştu: ' + xhr.responseText).css('color', 'red'); // Hata mesajı göster
+                }
+            });
+        });
+    });
+</script>

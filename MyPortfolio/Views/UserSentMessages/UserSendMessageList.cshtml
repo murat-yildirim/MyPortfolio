@@ -1,0 +1,65 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "UserSendMessageList";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Mesajlarım</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Gönderilen Mesaj Listesi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Gönderen</th>
+									<th scope="col">Konu</th>
+									<th scope="col">Tarih</th>
+									<th scope="col">Mesajı Aç</th>
+									<th scope="col">Mesaj Durumu</th>
+									
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.MessageId</td>
+										<td>@item.Name @item.Surname</td>
+										<td>@item.Subject</td>
+										<td>@item.SendDate.ToShortDateString()</td>
+										<td><a href="/Message/UserMessageDetail/@item.MessageId" class="btn btn-warning">Mesajı Aç</a></td>
+										<td>@if (@item.IsRead == true)
+											{
+											<span style="color:green">Okundu</span>
+											}
+											else
+											{
+											<span style="color:red">Okunmadı</span>
+											}
+										</td>
+
+									</tr>
+								}
+
+							</tbody>
+						</table>
+						<a href="/UserSentMessages/NewSendMessage/" class="btn btn-primary">Yeni Mesaj Gönder</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+

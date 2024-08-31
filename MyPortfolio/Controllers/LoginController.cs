@@ -36,8 +36,14 @@ namespace MyPortfolio.Controllers
 				var useridentity = new ClaimsIdentity(claims, "Login");
 				ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
 				await HttpContext.SignInAsync(principal);
-
-				return RedirectToAction("Index", "Dashboard");
+				if (datavalue.Role == "A")
+				{
+					return RedirectToAction("Index", "Dashboard");
+				}
+				else
+				{
+					return RedirectToAction("UserDashboard", "Dashboard");
+				}
 			}
 			return View();
 		}

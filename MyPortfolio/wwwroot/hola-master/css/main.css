@@ -1266,12 +1266,12 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     position: relative;
 }
 
-.section-intro h1 {
-    font-family: "librebaskerville-bold", serif;
-    font-size: 4.8rem;
-    line-height: 1.375;
-    margin-top: 0;
-}
+    .section-intro h1 {
+        font-family: fangsong;
+        font-size: 4.8rem;
+        line-height: 1.375;
+        margin-top: 0;
+    }
 
 .section-intro h3 {
     font-family: "montserrat-semibold", sans-serif;
@@ -1796,13 +1796,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     top: 50%;
 }
 
-.home-content h1 {
-    font-family: "librebaskerville-bold", serif;
-    color: #FFFFFF;
-    font-size: 6rem;
-    line-height: 1.35;
-    margin-top: 0;
-}
+    .home-content h1 {
+        font-family: fangsong;
+        color: #FFFFFF;
+        font-size: 6rem;
+        line-height: 1.35;
+        margin-top: 0;
+    }
 
 .home-content__main {
     padding-right: 300px;

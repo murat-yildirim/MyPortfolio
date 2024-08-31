@@ -1,4 +1,5 @@
-﻿
+﻿@using MyPortfolio.DAL.Entities
+@model List<SocialMedia>
 <footer>
     <div class="row">
         <div class="col-full">
@@ -8,36 +9,14 @@
             </div>
 
             <ul class="footer-social">
+                @foreach(var item in Model){
                 <li>
-                    <a href="#0">
-                        <i class="im im-facebook" aria-hidden="true"></i>
-                        <span>Facebook</span>
+                    <a href="@item.Url">
+                            <i class="@item.Icon" aria-hidden="true"></i>
+                        <span>@item.Title</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-twitter" aria-hidden="true"></i>
-                        <span>Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-instagram" aria-hidden="true"></i>
-                        <span>Instagram</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-behance" aria-hidden="true"></i>
-                        <span>Behance</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="im im-pinterest" aria-hidden="true"></i>
-                        <span>Pinterest</span>
-                    </a>
-                </li>
+                }
             </ul>
 
         </div>
@@ -47,8 +26,8 @@
 
         <div class="col-twelve">
             <div class="copyright">
-                <span>© Copyright MyPortfolyo @DateTime.Now.Year</span>
-                <span>Design by <a href="https://www.styleshout.com/">Asp.Net Core 6.0</a></span>
+                <span>© Copyright @DateTime.Now.Year Tüm Hakları Saklıdır</span>
+                
             </div>
 
             <div class="go-top">

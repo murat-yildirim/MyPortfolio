@@ -26,7 +26,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="/Profil/PasswordUpdate/">
+							<a href="/Profil/ProfilNewPassword/">
 								<span class="link-collapse">Şifre Değiştir</span>
 							</a>
 						</li>
@@ -118,23 +118,23 @@
 				</li>
 
 
-
-				<li class="nav-item">
-					<a href="/Statistic/Index/">
-						<i class="la la-bar-chart"></i>
-						<p>İstatistikler</p>
-					</a>
-				</li>
 			}
 			@if (HttpContextAccessor.HttpContext.User.IsInRole("U"))
 			{
 				<li class="nav-item">
 					<a href="/UserSentMessages/UserSendMessageList/">
-					<i class="la la-bar-chart"></i>
-					<p>İletişim Paneli</p>
+						<i class="la la-bar-chart"></i>
+						<p>İletişim Paneli</p>
+					</a>
+				</li>
+
+			}
+			<li class="nav-item">
+				<a href="/Announcement/AnnouncementList/">
+					<i class="la la-fonticons"></i>
+					<p>Duyurular</p>
 				</a>
 			</li>
-			}
 			<li class="nav-item">
 				<a href="/Login/LogOut/">
 					<i class="la la-fonticons"></i>

@@ -4,5 +4,20 @@
     Layout = "~/Views/Layout/Index.cshtml";
 }
 
-<h1>Index</h1>
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Dashboard</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					@await Html.PartialAsync("StatisticList")
+					@await Html.PartialAsync("DashboardToDoList")
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 

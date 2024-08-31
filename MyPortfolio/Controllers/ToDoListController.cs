@@ -10,7 +10,10 @@ namespace MyPortfolio.Controllers
 		MyPoftfolioContext context = new MyPoftfolioContext();
 		public IActionResult Index()
 		{
-			var values = context.ToDoLists.ToList();
+			var values = context.ToDoLists
+	.OrderByDescending(x => x.Date) // Date alanına göre sıralama
+	
+	.ToList();
 
 			return View(values);
 		}

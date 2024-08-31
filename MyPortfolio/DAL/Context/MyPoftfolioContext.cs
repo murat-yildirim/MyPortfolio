@@ -39,5 +39,6 @@ namespace MyPortfolio.DAL.Context
                 .IsUnique();      
 		}
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 	}
 }

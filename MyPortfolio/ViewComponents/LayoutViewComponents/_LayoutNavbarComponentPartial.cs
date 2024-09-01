@@ -8,8 +8,8 @@ namespace MyPortfolio.ViewComponents.LayoutViewComponents
 		MyPoftfolioContext context = new MyPoftfolioContext();
 		public IViewComponentResult Invoke()
 		{
-			ViewBag.toDoListCount = context.ToDoLists.Where(x=>x.Status == false).Count();
-			var values = context.ToDoLists.Where(x => x.Status == false).ToList();
+			ViewBag.announcementCount = context.Announcements.Where(x=>x.Status == false).Count();
+			var values = context.Announcements.Where(x => x.Status == false).ToList();
 
 			// Oturum açmış kullanıcının kullanıcı adını al
 			string username = User.Identity.Name;

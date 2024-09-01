@@ -1,8 +1,59 @@
-﻿
+﻿@using MyPortfolio.DAL.Entities
+@model List<Announcement>
+
 @{
     ViewData["Title"] = "AnnouncementList";
     Layout = "~/Views/Layout/Index.cshtml";
 }
 
-<h1>AnnouncementList</h1>
 
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Duyurular</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Duyurular Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Duyuru Başlığı</th>
+                                    <th scope="col">Duruyu Detayı</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Duyuru İşlemleri</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AnnouncementID</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Date.ToShortDateString()</td>
+                                        <td><a href="/Announcement/AnnouncementDetail/@item.AnnouncementID" class="btn btn-warning">Duyuru Aç</a></td>
+                                        @if (User.IsInRole("A"))
+                                        {
+                                            <td><a href="/Announcement/AnnouncementDelete/@item.AnnouncementID" class="btn btn-danger">Sil</a></td>
+                                            <td><a href="/Announcement/AnnouncementUpdate/@item.AnnouncementID" class="btn btn-success">Güncelle</a></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @if (User.IsInRole("A"))
+                        {
+                            <a href="/Announcement/AnnouncementAdd/" class="btn btn-primary">Yeni Duyuru Girişi</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

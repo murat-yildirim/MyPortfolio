@@ -9,7 +9,7 @@ namespace MyPortfolio.DAL.Context
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-363RU31\\SQLEXPRESS;initial Catalog=MyPortfolioDb;integrated Security=true;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-BR79QAN\\SQLEXPRESS;initial Catalog=MyPortfolioDb;integrated Security=true;");
 
         }
         public DbSet<About> Abouts { get; set; }

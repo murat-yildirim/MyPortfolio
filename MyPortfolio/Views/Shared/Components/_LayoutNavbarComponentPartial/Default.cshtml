@@ -1,4 +1,4 @@
-﻿@model List<ToDoList>
+﻿@model List<Announcement>
 
 
 <div class="main-header">
@@ -44,19 +44,19 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="la la-bell"></i>
 						
-						<span class="notification">@ViewBag.toDoListCount</span>
+						<span class="notification">@ViewBag.announcementCount</span>
 						
 					</a>
 					<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
 						<li>
-							<div class="dropdown-title">@ViewBag.toDoListCount Yeni Bildiriminiz Var</div>
+							<div class="dropdown-title">@ViewBag.announcementCount Yeni Bildiriminiz Var</div>
 						</li>
 						<li>
 							<div class="notif-center">
 								@foreach(var item in Model)
 								{
-									<a href="#">
-										<div class="notif-icon notif-success"> <i class="@item.ImageUrl"></i> </div>
+									<a href="/Announcement/AnnouncementDetail/@item.AnnouncementID">
+										<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
 										<div class="notif-content">
 											<span class="block">
 												@item.Title

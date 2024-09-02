@@ -19,11 +19,11 @@ namespace MyPortfolio.Controllers
 			ViewBag.v3 = context.Messages.Where(x => x.IsRead == false).Count();
 			ViewBag.v4 = context.Messages.Where(x => x.IsRead == true).Count();
 
-			////Weather APİ
-			//string api = "5f6f59be2beceaaba4c683f616c33f98";
-			//string connection = "https://api.openweathermap.org/data/2.5/weather?q=istanbul&mode=xml&lang=tr&units=metric&appid=" + api;
-			//XDocument document = XDocument.Load(connection);
-			//ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+			//Weather APİ
+			string api = "5f6f59be2beceaaba4c683f616c33f98";
+			string connection = "https://api.openweathermap.org/data/2.5/weather?q=istanbul&mode=xml&lang=tr&units=metric&appid=" + api;
+			XDocument document = XDocument.Load(connection);
+			ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
 
 			// ToDoList verilerini model olarak gönderin
 			var toDoLists = context.ToDoLists
@@ -57,15 +57,17 @@ namespace MyPortfolio.Controllers
 		public IActionResult UserDashboard()
 		{
 
-			////Weather APİ
-			//string api = "5f6f59be2beceaaba4c683f616c33f98";
-			//string connection = "https://api.openweathermap.org/data/2.5/weather?q=istanbul&mode=xml&lang=tr&units=metric&appid=" + api;
-			//XDocument document = XDocument.Load(connection);
-			//ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+			//Weather APİ
+			string api = "5f6f59be2beceaaba4c683f616c33f98";
+			string connection = "https://api.openweathermap.org/data/2.5/weather?q=istanbul&mode=xml&lang=tr&units=metric&appid=" + api;
+			XDocument document = XDocument.Load(connection);
+			ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
 
-			
-			return View();
-
+			var values = context.Announcements
+		.OrderByDescending(x => x.Date) // yeniden eskiye Tarihe göre sıralama
+		.Take(3) // İlk 3 kaydı al
+		.ToList();
+			return PartialView("UserDashboard", values); // PartialView ve model gönderir	
 
 		}
 	}

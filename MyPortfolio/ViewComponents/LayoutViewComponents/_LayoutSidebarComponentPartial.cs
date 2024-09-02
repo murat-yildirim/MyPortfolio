@@ -8,7 +8,11 @@ namespace MyPortfolio.ViewComponents.LayoutViewComponents
 		MyPoftfolioContext context = new MyPoftfolioContext();
 		public IViewComponentResult Invoke()
 		{
-			
+			ViewBag.announcementCount = context.Announcements.Where(x => x.Status == false).Count();
+			var values = context.Announcements.Where(x => x.Status == false).ToList();
+			ViewBag.todolistCound=context.ToDoLists.Where(x=>x.Status == false).Count();
+			ViewBag.usersendMessage = context.Messages.Where(x=>x.IsRead==false).Count();	
+
 
 			// Oturum açmış kullanıcının kullanıcı adını al
 			string username = User.Identity.Name;

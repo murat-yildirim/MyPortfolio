@@ -10,7 +10,7 @@
 			<div class="info">
 				<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 					<span>
-					
+
 						@ViewBag.name @ViewBag.surname
 						<span class="user-level">@ViewBag.role</span>
 						<span class="caret"></span>
@@ -56,63 +56,62 @@
 				</li>
 				<li class="nav-item">
 					<a href="/About/AboutUpdate">
-						<i class="la la-table"></i>
+						<i class="la la-user"></i>
 						<p>Hakkımda</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="/ToDoList/Index/">
-						<i class="la la-bell"></i>
+						<i class="la la-sticky-note-o"></i>
 						<p>Yapılacaklar</p>
+						<span class="badge badge-warning">@ViewBag.todolistCound</span>
+						
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="/Experience/ExperienceList">
-						<i class="la la-apple"></i>
+						<i class="la la-laptop"></i>
 						<p>Deneyimler</p>
 					</a>
 				</li>
-			
+
 				<li class="nav-item">
 					<a href="/Contact/ContactList">
-						<i class="la la-bell"></i>
+						<i class="la la-info"></i>
 						<p>İletişim Bilgileri</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="/Portfolio/PortfolioList">
-						<i class="la la-font"></i>
+						<i class="la la-user"></i>
 						<p>Portfolyo</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="/Skill/SkillList">
-						<i class="la la-fonticons"></i>
+						<i class="la la-keyboard-o"></i>
 						<p>Yeteneklerim</p>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a href="icons.html">
-						<i class="la la-fonticons"></i>
-						<p>Referanslarım</p>
-					</a>
-				</li>
+
 				<li class="nav-item">
 					<a href="/SocialMedia/SocialMediaList">
-						<i class="la la-fonticons"></i>
+						<i class="la la-at"></i>
 						<p>Sosyal Medya</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="/Message/Inbox/">
-						<i class="la la-envelope-o"></i>
+						<i class="la la-comments"></i>
 						<p>Üyelerden Gelen Kutusu</p>
+						<span class="badge badge-warning">@ViewBag.usersendMessage</span>
+						
 					</a>
 				</li>
 
 				<li class="nav-item">
 					<a href="/ContactMessage/ContactMessageList/">
-						<i class="la la-envelope-o"></i>
+						<i class="la la-comments"></i>
 						<p>İletişimden Gelen Kutusu</p>
 					</a>
 				</li>
@@ -122,22 +121,30 @@
 			@if (HttpContextAccessor.HttpContext.User.IsInRole("U"))
 			{
 				<li class="nav-item">
+					<a href="/Dashboard/UserDashboard/">
+						<i class="la la-dashboard"></i>
+						<p>Dashboard</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="/UserSentMessages/UserSendMessageList/">
-						<i class="la la-bar-chart"></i>
+						<i class="la la-info"></i>
 						<p>İletişim Paneli</p>
 					</a>
 				</li>
 
+
 			}
 			<li class="nav-item">
 				<a href="/Announcement/AnnouncementList/">
-					<i class="la la-fonticons"></i>
+					<i class="la la-bullhorn"></i>
 					<p>Duyurular</p>
+					<span class="badge badge-warning">@ViewBag.announcementCount</span>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a href="/Login/LogOut/">
-					<i class="la la-fonticons"></i>
+					<i class="la la-sign-out"></i>
 					<p>Çıkış Yap</p>
 				</a>
 			</li>

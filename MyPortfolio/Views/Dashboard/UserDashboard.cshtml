@@ -1,28 +1,93 @@
-﻿
+﻿@using MyPortfolio.DAL.Entities
+@model List<Announcement>
 @{
-    ViewData["Title"] = "UserDashboard";
-    Layout = "~/Views/Layout/Index.cshtml";
+	ViewData["Title"] = "UserDashboard";
+	Layout = "~/Views/Layout/Index.cshtml";
 }
-
 <div class="content">
 	<div class="container-fluid">
 		<h4 class="page-title">Dashboard</h4>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
-					<div class="row">
-						<div class="col-md-6 grid-center stretch-card">
-							<div class="card tale-bg">
-								<div class="card-people mt-auto">
-									<img src="~/hola-master/images/people.svg" alt="people">
-									<div class="weather-info position-absolute" style="top: 20px; left: 100%;" ">
-										<div class="d-flex ">
-											<div>
-												<h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>@ViewBag.v5<sup>C</sup></h2>
-											</div>
-											<div class="ml-2">
-												<h4 class="location font-weight-normal">İstanbul</h4>
-												<h6 class="font-weight-normal">Türkiye</h6>
+					<div class="d-flex justify-content-start">
+						<div class="col-md-6">
+							<div class="card card-tasks">
+								<div class="card-header ">
+									<h4 class="card-title">Duyurular</h4>
+
+								</div>
+								<div class="card-body ">
+									<div class="table-full-width">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>
+
+													</th>
+													<th>Başlık</th>
+													<th>Tarih</th>
+													<th>İşlem</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var item in Model)
+												{
+													<tr>
+
+														<td>
+															<div class="form-check">
+																<label class="form-check-label">
+																	<input class="form-check-input task-select" type="checkbox">
+																	<span class="form-check-sign"></span>
+																</label>
+															</div>
+														</td>
+
+
+														<td>@item.Title</td>
+														<td>@item.Date.ToShortDateString()</td>
+
+														<td class="td-actions text-right">
+															<div class="form-button-action">
+																<button type="button" data-toggle="tooltip" title="Duyuruya Git" class="btn btn-link <btn-simple-primary">
+																	<a href="/Announcement/AnnouncementDetail/@item.AnnouncementID" class="la la-comment"></a>
+																</button>
+																@* <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+															<i class="la la-times"></i>
+															</button> *@
+															</div>
+														</td>
+
+
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="card-footer ">
+									<div class="stats">
+										<i class="now-ui-icons loader_refresh spin"></i> Tamamını Görmek İçin <a href="/Announcement/AnnouncementList/">Git</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-md-6 grid-center stretch-card">
+								<div class="card tale-bg">
+									<div class="card-people mt-auto">
+										<img src="~/hola-master/images/191426.jpg" alt="people" style="width:160%; ">
+										<div class="weather-info position-absolute" style="top:5%; left:90%;" ">
+											<div class="d-flex ">
+												<div>
+													<h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>@ViewBag.v5<sup>C</sup></h2>
+												</div>
+												<div class="ml-2">
+													<h4 class="location font-weight-normal">İstanbul</h4>
+													<h6 class="font-weight-normal">Türkiye</h6>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -36,4 +101,3 @@
 		</div>
 	</div>
 </div>
-

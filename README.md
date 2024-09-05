@@ -1,4 +1,4 @@
-<h2>Asp.Net Core ile Kişisel Portfolto Projesi</h2>
+<h2>Asp.Net Core ile Kişisel Portfolyo Projesi</h2>
 Bu proje, ASP.NET Core kullanılarak geliştirilen bir kişisel portföy yönetim sistemidir. Proje kapsamında, hem admin hem de kullanıcı panellerinde veritabanı tabloları üzerinde dinamik olarak CRUD (Oluşturma, Okuma, Güncelleme, Silme) işlemleri yapılmaktadır.
 <h3>Proje Özellikler</h3>
 <h4>Admin Paneli</h4>

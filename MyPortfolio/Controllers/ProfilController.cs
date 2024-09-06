@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyPortfolio.DAL.Context;
 using MyPortfolio.DAL.Entities;
 
@@ -8,7 +10,12 @@ namespace MyPortfolio.Controllers
 	public class ProfilController : Controller
 	{
 		MyPoftfolioContext context = new MyPoftfolioContext();
+		private readonly PasswordHasher<User> _passwordHasher;
+		public ProfilController()
+		{
 
+			_passwordHasher = new PasswordHasher<User>();
+		}
 
 
 
@@ -61,24 +68,25 @@ namespace MyPortfolio.Controllers
 			// Kullanıcının bilgilerini Users tablosundan al
 			var user = context.Users.FirstOrDefault(u => u.UserName == username);
 
-			
-				if (userModel.Password == userModel.PasswordAgain)
-				{
-					// Yeni şifreyi kaydet
-					user.Password = userModel.Password;
-					user.PasswordAgain = userModel.PasswordAgain;
-					context.Users.Update(user);
-					context.SaveChanges();
+			if (userModel.Password == userModel.PasswordAgain)
+			{
+				// Şifreleri hashleyin
+				user.Password = _passwordHasher.HashPassword(user, userModel.Password);
+				user.PasswordAgain = _passwordHasher.HashPassword(user, userModel.PasswordAgain);
+
+				// Veritabanına güncellemeleri kaydet
+				context.Users.Update(user);
+				context.SaveChanges();
 
 				// Başarı mesajını ayarla
 				TempData["SuccessMessage"] = "Şifreniz başarıyla güncellendi.";
 			}
 			else
-				{
-					// Şifreler eşleşmiyorsa hata mesajını ekle
-					ModelState.AddModelError("", "Yeni şifreler eşleşmiyor.");
-				}
-			
+			{
+				// Şifreler eşleşmiyorsa hata mesajını ekle
+				ModelState.AddModelError("", "Yeni şifreler eşleşmiyor.");
+			}
+
 			return View(userModel);
 		}
 	}

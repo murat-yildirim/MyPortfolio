@@ -3,12 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolio.DAL.Context;
 using MyPortfolio.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyPortfolio.Controllers
 {
 	public class RegisterController : Controller
 	{
 		MyPoftfolioContext context = new MyPoftfolioContext();
+
+		private readonly MyPoftfolioContext _context;
+		private readonly PasswordHasher<User> _passwordHasher;
+		public RegisterController()
+		{
+			_context = new MyPoftfolioContext();
+			_passwordHasher = new PasswordHasher<User>();
+		}
+
+
 		public IActionResult Index()
 		{
 			return View();
@@ -47,6 +58,9 @@ namespace MyPortfolio.Controllers
 					// Hatalar varsa kullanıcıyı tekrar döndür
 					return View(data);
 				}
+
+				data.Password = _passwordHasher.HashPassword(data, data.Password);
+				data.PasswordAgain = _passwordHasher.HashPassword(data, data.PasswordAgain);
 
 				// Kullanıcıyı veritabanına ekle
 				data.Role = "U"; // Varsayılan rol olarak belirleyin
